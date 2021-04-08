@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://s3-ap-northeast-1.amazonaws.com/abxrm.script/latest/abx-web-sdk.min.js"></script>
+    <title>event1</title>
+</head>
+<body>
+    <div id="main-container">
+        <div id="main-container-title">event1</div>
+        <div id="container-event1" class="container-view">
+            <div class="eventClass">
+                <p class="keyname">Log_in : </p>
+                <input type="text" id="loginInput" class="event-Input">
+                <button id="keyapply" onclick="login()">로그인</button>
+            </div>
+            <div class="eventClass">
+                <!-- <p class="keyname" id="userProperty">유저정보</p> -->
+                <p class="keyname">Age : </p>
+                <input type="number" id="userProperty_AgeInput" class="event-Input" min="1">
+                <p class="keyname">Gender : </p>
+                <div class="event-Input event_radio">
+                    <input type="radio" id="userProperty_Male" name="userProperty_Gender" value="male" checked>
+                    <label for="userProperty_Male">Male</label>
+                    <input type="radio" id="userProperty_Female" name="userProperty_Gender" value="female">
+                    <label for="userProperty_Female">Female</label>
+                </div>
+                <p class="keyname">User_Nick : </p>
+                <input type="text" id="userProperty_UsernickInput" class="event-Input">
+                <p class="keyname">Place : </p>
+                <input type="text" id="userProperty_PlaceInput" class="event-Input">
+                <p class="keyname">Height : </p>
+                <input type="number" id="userProperty_HeightInput" class="event-Input" min="1">
+                <p class="keyname">Married : </p>
+                <div class="event-Input event_radio">
+                    <input type="radio" id="userProperty_True" name="userProperty_Married" value="true" checked>
+                    <label for="userProperty_True">True</label>
+                    <input type="radio" id="userProperty_False" name="userProperty_Married" value="false">
+                    <label for="userProperty_False">False</label>
+                </div>
+                <button id="keyapply" onclick="userProperty()">유저정보</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

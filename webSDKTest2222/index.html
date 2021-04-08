@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- <script src="https://s3-ap-northeast-1.amazonaws.com/abxrm.script/test/abx-web-sdk.dev.js"></script> -->
+    <script type="text/javascript" async src="js/main.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <title>Web_SDK</title>
+</head>
+<body>
+
+<!-- 상용서버 -->
+<script>
+    !function (e, r) { if (void 0 !== e && !e.adbrix) { var t = { queue: [] }, o = navigator.userAgent.toLowerCase(), n = r.createElement("script"), i = "Netscape" === navigator.appName && -1 !== navigator.userAgent.search("Trident") || -1 !== o.indexOf("msie") ? "abx-web-sdk.ie.min.js" : "abx-web-sdk.min.js"; n.type = "text/javascript", n.async = !0, n.src = "//static.adbrix.io/web-sdk/latest/" + i, n.onload = function () { e.adbrix.runQueuedFunctions ? e.adbrix.runQueuedFunctions() : console.log("[adbrix] Error: could not load SDK") }; var a = r.getElementsByTagName("script")[0]; a.parentNode.insertBefore(n, a);["init", "onInitialized", "login", "getUserId", "logout", "userProperty.get", "userProperty.getAll", "userProperty.addOrUpdate", "userProperty.remove", "userProperty.removes", "common.signUp", "common.invite", "common.useCredit", "common.purchase", "event.send", "debug.traceListener", "commerceAttr.categories", "commerceAttr.product"].forEach(function (e) { var r = e.split("."), o = r.pop(); r.reduce(function (e, r) { return e[r] = e[r] || {} }, t)[o] = function () { t.queue.push([e, arguments]) } }), e.adbrix = t } }(window, document);
+</script>
+
+<!-- 개발서버 -->
+<!-- <script async>
+    !function (e, r) { if (void 0 !== e && !e.adbrix) { var t = { queue: [] }, o = navigator.userAgent.toLowerCase(), n = r.createElement("script"), i = "Netscape" === navigator.appName && -1 !== navigator.userAgent.search("Trident") || -1 !== o.indexOf("msie") ? "abx-web-sdk.ie.dev.js" : "abx-web-sdk.dev.js"; n.type = "text/javascript", n.async = !0, n.src = "//s3.ap-northeast-1.amazonaws.com/static.adbrix.io/web-sdk/test/" + i, n.onload = function () { e.adbrix.runQueuedFunctions ? e.adbrix.runQueuedFunctions() : console.log("[adbrix] Error: could not load SDK") }; var a = r.getElementsByTagName("script")[0]; a.parentNode.insertBefore(n, a);["init", "onInitialized", "login", "getUserId", "logout", "userProperty.get", "userProperty.getAll", "userProperty.addOrUpdate", "userProperty.remove", "userProperty.removes", "common.signUp", "common.invite", "common.useCredit", "common.purchase", "event.send", "debug.traceListener", "commerceAttr.categories", "commerceAttr.product"].forEach(function (e) { var r = e.split("."), o = r.pop(); r.reduce(function (e, r) { return e[r] = e[r] || {} }, t)[o] = function () { t.queue.push([e, arguments]) } }), e.adbrix = t } }(window, document);
+</script> -->
+
+    <div id="main-side">
+        <div id="main-side-logo" onclick="listButton(this)">Web_SDK</div>
+        <ul class="menu-side-list">
+            <li onclick="listButton(this)" id="1">유저 분석 이벤트</li>
+            <li onclick="listButton(this)" id="2">커스텀 이벤트</li>
+            <li onclick="listButton(this)" id="3">공통(일반) 이벤트</li>
+            <li onclick="listButton(this)" id="4">결제하기 이벤트</li>
+            <li onclick="listButton(this)" id="5">커머스 이벤트</li>
+            <li onclick="listButton(this)" id="6">게임 이벤트</li>
+        </ul>
+    </div>
+    <div id="main-container">
+        <div id="main-container-title">Web_SDK
+             테스트하기 위한 페이지
+             <!-- <div><a href="html/event1.html">다른 html 화면</a></div> -->
+        </div>
+        <div id="event-title">
+            <div class="event-name">Event Name</div>
+            <div class="lain">|</div>
+            <div class="event-name">Event Value</div>
+        </div>
+        <div id="container-event1" class="container-view">
+            <div class="eventClass">
+                <p class="keyname">Log_in : </p>
+                <input type="text" id="loginInput" class="event-Input" value="20210407_william">
+                <button id="keyapply" onclick="login()">로그인</button>
+                <button id="keyapply" onclick="logout()">로그아웃</button>
+            </div>
+            <div class="eventClass">
+                <!-- <p class="keyname" id="userProperty">유저정보</p> -->
+                <p class="keyname">Age : </p>
+                <input type="number" id="userProperty_AgeInput" class="event-Input" min="1" value="30">
+                <p class="keyname">Gender : </p>
+                <div class="event-Input event_radio">
+                    <input type="radio" id="userProperty_Male" name="userProperty_Gender" value="male" checked>
+                    <label for="userProperty_Male">Male</label>
+                    <input type="radio" id="userProperty_Female" name="userProperty_Gender" value="female">
+                    <label for="userProperty_Female">Female</label>
+                </div>
+                <p class="keyname">User_Nick : </p>
+                <input type="text" id="userProperty_UsernickInput" class="event-Input" value="william">
+                <p class="keyname">Place : </p>
+                <input type="text" id="userProperty_PlaceInput" class="event-Input" value="123">
+                <p class="keyname">Height : </p>
+                <input type="number" id="userProperty_HeightInput" class="event-Input" min="1" value="170">
+                <p class="keyname">Married : </p>
+                <div class="event-Input event_radio">
+                    <input type="radio" id="userProperty_True" name="userProperty_Married" value="true" checked>
+                    <label for="userProperty_True">True</label>
+                    <input type="radio" id="userProperty_False" name="userProperty_Married" value="false">
+                    <label for="userProperty_False">False</label>
+                </div>
+                <button id="keyapply" onclick="userProperty()">유저정보</button>
+            </div>
+        </div>
+
+        <div id="container-event2" class="container-view">
+            <div class="eventClass">
+                <p class="keyname">customKey : </p>
+                <input type="text" id="custom_KeyInput" class="event-Input">
+                <p class="keyname">customValue : </p>
+                <input type="text" id="custom_ValueInput" class="event-Input">
+            </div>
+            <div class="eventClass">
+                <button id="keyapply" onclick="customEvent()">커스텀</button>
+            </div>
+        </div>
+
+        <div id="container-event3" class="container-view">
+            <div class="eventClass">
+                <p class="keyname">SignChannel : </p>
+                <form id="userRegister_SignChannel" class="event-Input">
+                    <select name="SignChannel" id="SignChannel" class="selectClass">
+                        <option value="Kakao">Kakao</option>
+                        <option value="Naver">Naver</option>
+                        <option value="Line">Line</option>
+                        <option value="Google">Google</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Twitter">Twitter</option>
+                        <option value="whatsApp">whatsApp</option>
+                        <option value="QQ">QQ</option>
+                        <option value="UserId">UserId</option>
+                        <option value="ETC">ETC</option>
+                        <option value="SkTid">SkTid</option>
+                        <option value="AppleId">AppleId</option>
+                    </select>
+                </form>
+                <!-- <input type="text" id="userRegister_SignChannel" class="event-Input"> -->
+                <p class="keyname">Married : </p>
+                <div class="event-Input event_radio">
+                    <input type="radio" id="userRegister_true" name="userRegister_Married" value="true" checked>
+                    <label for="true">True</label>
+                    <input type="radio" id="userRegister_false" name="userRegister_Married" value="false">
+                    <label for="false">False</label>
+                </div>
+                <p class="keyname">Age : </p>
+                <input type="number" id="userRegister_AgeInput" class="event-Input" min="1">
+                <p class="keyname">Gender : </p>
+                <div class="event-Input event_radio">
+                    <input type="radio" id="userRegister_Male" name="userRegister_Gender" value="male" checked>
+                    <label for="userRegister_Male">Male</label>
+                    <input type="radio" id="userRegister_Female" name="userRegister_Gender" value="female">
+                    <label for="userRegister_Female">Female</label>
+                </div>
+                <p class="keyname">Credit : </p>
+                <input type="number" id="usingCredit_CreditInput" class="event-Input" min="1">
+                <button id="keyapply" onclick="userRegister()">회원가입</button>
+                <button id="keyapply" onclick="userInvite()">사용자 초대</button>
+                <button id="keyapply" onclick="usingCredit()">크레딧 사용</button>
+            </div>
+        </div>
+
+        <div id="container-event4" class="container-view">
+            <div class="eventClass">
+                <p class="keyname">Order ID : </p>
+                <input type="text" id="purchase_orderIDInput" class="event-Input" value="123">
+                <p class="keyname">OrderSales : </p>
+                <input type="number" id="purchase_orderSalesInput" class="event-Input" value="123">
+                <p class="keyname">Product ID : </p>
+                <input type="text" id="purchase_productIDInput" class="event-Input" value="123">
+                <p class="keyname">Product Name : </p>
+                <input type="text" id="purchase_productNameInput" class="event-Input" value="123">
+                <p class="keyname">Price : </p>
+                <input type="number" id="purchase_priceInput" class="event-Input" value="123">
+                <p class="keyname">Quantity : </p>
+                <input type="number" id="purchase_quantityInput" class="event-Input" value="123">
+                <p class="keyname">Discount : </p>
+                <input type="number" id="purchase_discountInput" class="event-Input" value="123">
+                <p class="keyname">CurrencyEnum : </p>
+                <form id="userRegister_currencyEnum" class="event-Input">
+                    <select name="currencyEnum" id="currencyEnum" class="selectClass">
+                        <option value="KRW">KRW</option>
+                        <option value="USD">USD</option>
+                        <option value="JPY">JPY</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="CNY">CNY</option>
+                        <option value="TWD">TWD</option>
+                        <option value="HKD">HKD</option>
+                        <option value="IDR">IDR</option>
+                        <option value="INR">INR</option>
+                        <option value="RUB">RUB</option>
+                        <option value="THB">THB</option>
+                        <option value="VND">VND</option>
+                        <option value="MYR">MYR</option>
+                    </select>
+                </form>
+                <p class="keyname">Delivery : </p>
+                <input type="number" id="purchase_deliveryInput" class="event-Input" value="123">
+                <p class="keyname">PaymentEnum : </p>
+                <form id="userRegister_paymentEnum" class="event-Input">
+                    <select name="paymentEnum" id="paymentEnum" class="selectClass">
+                        <option value="CreditCard">CreditCard</option>
+                        <option value="BankTransfer">BankTransfer</option>
+                        <option value="MobilePayment">MobilePayment</option>
+                        <option value="ETC">ETC</option>
+                    </select>
+                </form>
+                <button id="keyapply" onclick="purchase()">결제하기</button>
+                <button id="keyapply" onclick="addToCart()">카트에 추가</button>
+                <button id="keyapply" onclick="viewList()">리스트</button>
+                <button id="keyapply" onclick="addToWishList()">즐겨찾기 리스트</button>
+                <button id="keyapply" onclick="share()">공유하기</button>
+            </div>
+        </div>
+
+        <div id="container-event5" class="container-view">
+            <input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" ></input>
+        </div>
+
+        <div id="container-event6" class="container-view">
+        </div>
+    </div>
+</body>
+</html>
